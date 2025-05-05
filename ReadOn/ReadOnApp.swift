@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct ReadOnApp: App {
+    
+    let router = Router.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+                    .environmentObject(router)
+            }
         }
     }
 }
