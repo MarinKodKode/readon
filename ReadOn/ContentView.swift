@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View { 
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    
+    @EnvironmentObject var router: Router
+    
+    var body: some View {
+        NavigationStack(path: $router.path) {
+            HomeView()
+                .navigationDestination(for: Destination.self) { destination in
+                    switch destination {
+                    case .article:
+                        ArticleView()
+                    default :
+                        ArticleView()
+                    }
+                }
         }
-        .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
